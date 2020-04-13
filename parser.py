@@ -17,6 +17,8 @@ def readData(csv_file):
     #df.index = pd.to_datetime(df["date"] + "/" + df["hour"], format="%d/%m/%Y/%H:%M")
 
     listOfDFRows = df.to_numpy().tolist()
+    for i in range(len(listOfDFRows)):
+        listOfDFRows[i].reverse()
     #print("testing", listOfDFRows)
 
 
