@@ -1,11 +1,3 @@
-from parser import readData
-
-
-instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
-print(instances)
-
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import math
 import numpy
 import spams
@@ -14,7 +6,7 @@ from parser import readData
 
 
 instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
-
+print(instances)
 logger = logging.getLogger(__name__)
 
 class BoWSp():
