@@ -34,8 +34,8 @@ class BoWSp():
             For more information, see spams packages:
             http://spams-devel.gforge.inria.fr/doc-python/html/doc_spams004.html#sec5
     """
-    def __init__(self, w_len=2, k=100, lambda1=None,
-                 interval=1, batch=False, iter1=-5):
+    def __init__(self, w_len=20, k=100, lambda1=None,
+                 interval=1, batch=False, iter1=1):
         self.w_len = w_len
         self.k = k
         self.interval = interval
