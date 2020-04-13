@@ -7,7 +7,7 @@ from parser import readData
 
 
 instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
-print(instances)
+# print(instances)
 logger = logging.getLogger(__name__)
 
 class BoWSp():
@@ -220,4 +220,5 @@ class BoWSp():
 
 
 if __name__ == "__main__":
-    fit_transform(instances)
+    c = BoWSp()
+    c.fit_transform(instances)
