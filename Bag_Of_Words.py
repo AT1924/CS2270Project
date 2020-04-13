@@ -177,11 +177,15 @@ class BoWSp():
         log_msg = "learning dictionary with lambda: %f" %(lambda1)
         logger.info(log_msg)
         # Learn dictionary
+
+        print("About to train")
         D = spams.trainDL(
                       numpy.asfortranarray(temp),
                       K=k, lambda1=lambda1, batch=batch,
                       iter=iter1, posAlpha=True
                   )
+
+        print("Trained")
         return D
 
     @staticmethod
