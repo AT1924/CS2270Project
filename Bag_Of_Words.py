@@ -221,4 +221,5 @@ class BoWSp():
 
 if __name__ == "__main__":
     c = BoWSp()
-    c.fit_transform(instances)
+    d = c.fit_transform(instances)
+    print(d)
