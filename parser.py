@@ -6,20 +6,27 @@ import io
 
 def readData(csv_file):
     df = pd.read_csv(csv_file, sep=';', names=["date", "hour", "level"])
-    df = df.iloc[1:]
-    df.index = pd.to_datetime(df["date"] + "/" + df["hour"], format="%d/%m/%Y/%H:%M")
-    df = df.drop(columns=["date", "hour"])
+    df = df.iloc[1:8761]
 
-    #dailyList = df.to_numpy()
-    #dailyList = np.array_split(dailyList, 365)
+    df["date"] = pd.to_datetime(df["date"] + "/" + df["hour"], format="%d/%m/%Y/%H:%M")
 
-    listOfDFRows = df.transpose().values.flatten()
-    listOfDFRows = listOfDFRows.astype(float)
-    listOfDFRows = np.array_split(listOfDFRows, 365)
+    df["seconds"] = (df["date"] - pd.to_datetime('2015-01-01 00:00:00')).dt.total_seconds()
+    df = df.drop(columns=["hour"])
+    df = df.drop(columns=["date"])
+    df = df.astype('float32').astype('int32')
+    #df.index = pd.to_datetime(df["date"] + "/" + df["hour"], format="%d/%m/%Y/%H:%M")
 
-    #print("Dataframe shape: ", firstDay.shape)
-    #dt = (firstDay.index[-1] - firstDay.index[0])
-    #print("Number of hours between start and end dates: ", dt.total_seconds()/3600 + 1)
-    #print(listOfDFRows)
-    # list of all days
+    listOfDFRows = df.to_numpy().tolist()
+    #print("testing", listOfDFRows)
+
+
+
+
+    valuesPerDay = df.transpose().values.flatten()
+    valuesPerDay = valuesPerDay.astype(float)
+    valuesPerDay = np.array_split(valuesPerDay, 365)
+
+
+
+
     return listOfDFRows
