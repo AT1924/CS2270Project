@@ -186,7 +186,7 @@ class BoWSp():
         print("About to train")
         D = spams.trainDL(
                       numpy.asarray(temp, dtype = numpy.float64),
-                      K=k, lambda1=lambda1, batch=batch,
+                      K=2, lambda1=lambda1, batch=batch,
                       iter=iter1, posAlpha=True
                   )
 
