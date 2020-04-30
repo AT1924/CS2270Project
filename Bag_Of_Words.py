@@ -185,7 +185,7 @@ class BoWSp():
 
         print("About to train")
         D = spams.trainDL(
-                      numpy.asfortranarray(temp),
+                      numpy.asarray(temp, dtype = numpy.float64),
                       K=k, lambda1=lambda1, batch=batch,
                       iter=iter1, posAlpha=True
                   )
@@ -234,4 +234,4 @@ if __name__ == "__main__":
     instances = numpy.asarray(instances, dtype = numpy.float64)
     print(instances)
     c = BoWSp()
-    d = c.transform(instances)
+    d = c.fit(instances)
