@@ -7,7 +7,7 @@ from parser import readData
 
 
 # instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
-instances = np.array([[1, 2, 3, 0, 3, 2, 4, 5],[0, 3, 2, 1, 5, 3, 1],[9, 0, 4, 1, 8 ,4, 9, 3, 1, 2],[8, 5, 2, 1, 8]], dtype=np.uint8)
+instances = np.array([[1, 2, 3, 0, 3, 2, 4, 5],[0, 3, 2, 1, 5, 3, 1],[9, 0, 4, 1, 8 ,4, 9],[8, 5, 2, 1, 8, 1, 2]], dtype=np.uint8)
 # print(instances)
 
 # logger = logging.getLogger(__name__)
