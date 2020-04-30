@@ -120,7 +120,7 @@ class BoWSp():
 
         """
         # Initial timestamp index
-        stamp_index = range(0, data_len-w_len, interval)
+        stamp_index = range(1, data_len-w_len, interval)
         # Get length of index
         len_index = len(stamp_index)
         # Log len_index for debug
