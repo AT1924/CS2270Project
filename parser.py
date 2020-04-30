@@ -31,7 +31,6 @@ def readData(csv_file):
 
 
 
-    print(listOfDFRows)
     return listOfDFRows
 
 

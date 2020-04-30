@@ -226,6 +226,7 @@ class BoWSp():
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
+    instances = np.asarray(instances, dtype = np.float64)
     c = BoWSp()
     d = c.fit_transform(instances)
     print(d)
