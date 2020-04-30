@@ -130,7 +130,7 @@ class BoWSp():
         return stamp_index, len_index
 
     @staticmethod
-    def segment(data, w_len=20, interval=1):
+    def segment(data, w_len=2, interval=1):
         """Segment series data to subsequences by sliding window with
         given length and same interval
         Args:
