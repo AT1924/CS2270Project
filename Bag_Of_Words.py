@@ -234,4 +234,4 @@ if __name__ == "__main__":
     instances = numpy.asarray(instances, dtype = numpy.float64)
     print(instances)
     c = BoWSp()
-    d = c.fit(instances)
+    d = c.transform(instances)
