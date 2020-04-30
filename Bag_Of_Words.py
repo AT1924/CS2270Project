@@ -50,6 +50,9 @@ class BoWSp():
         log_msg = "Initial BoWSp object: window length=%d, dictionary size=%d, \
                    lambda=%f, interval=%d" %(self.w_len, self.k, 
                                              self.lambda1, self.interval)
+        print("Initial BoWSp object: window length=%d, dictionary size=%d, \
+                   lambda=%f, interval=%d" %(self.w_len, self.k, 
+                                             self.lambda1, self.interval))
         logger.info(log_msg)
 
     def fit(self, X):
@@ -123,6 +126,7 @@ class BoWSp():
         # Log len_index for debug
         log_msg = "stamp index length: %d" %(len_index)
         logger.debug(log_msg)
+        print(log_msg)
         return stamp_index, len_index
 
     @staticmethod
@@ -175,6 +179,7 @@ class BoWSp():
             lambda1 = 1.0 / math.sqrt(temp.shape[0])
         # Log learning informatino
         log_msg = "learning dictionary with lambda: %f" %(lambda1)
+        print(log_msg)
         logger.info(log_msg)
         # Learn dictionary
 
@@ -229,4 +234,4 @@ if __name__ == "__main__":
     instances = numpy.asarray(instances, dtype = numpy.float64)
     print(instances)
     c = BoWSp()
-    d = c.fit_transform(instances)
+    d = c.fit(instances)
