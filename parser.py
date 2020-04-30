@@ -13,6 +13,7 @@ def readData(csv_file):
     df["seconds"] = (df["date"] - pd.to_datetime('2015-01-01 00:00:00')).dt.total_seconds()
     df = df.drop(columns=["hour"])
     df = df.drop(columns=["date"])
+    df = df.fillna(0)
     df = df.astype('float32').astype('int32')
     #df.index = pd.to_datetime(df["date"] + "/" + df["hour"], format="%d/%m/%Y/%H:%M")
 
@@ -30,5 +31,9 @@ def readData(csv_file):
 
 
 
-
+    print(listOfDFRows)
     return listOfDFRows
+
+
+if __name__ == "__main__":
+    readData("venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
