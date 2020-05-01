@@ -6,9 +6,8 @@ import logging
 from parser import readData
 
 
-# instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
-instances = [[1, 2, 3, 0, 3, 2, 4, 5],[0, 3, 2, 1, 5, 3, 1],[9, 0, 4, 1, 8 ,4, 9, 3, 1, 2],[8, 5, 2, 1, 8]]
 # print(instances)
+
 logger = logging.getLogger(__name__)
 
 class BoWSp():
@@ -35,7 +34,7 @@ class BoWSp():
             For more information, see spams packages:
             http://spams-devel.gforge.inria.fr/doc-python/html/doc_spams004.html#sec5
     """
-    def __init__(self, w_len=20, k=100, lambda1=None,
+    def __init__(self, w_len=2, k=100, lambda1=None,
                  interval=1, batch=False, iter1=1):
         self.w_len = w_len
         self.k = k
@@ -51,6 +50,9 @@ class BoWSp():
         log_msg = "Initial BoWSp object: window length=%d, dictionary size=%d, \
                    lambda=%f, interval=%d" %(self.w_len, self.k, 
                                              self.lambda1, self.interval)
+        print("Initial BoWSp object: window length=%d, dictionary size=%d, \
+                   lambda=%f, interval=%d" %(self.w_len, self.k, 
+                                             self.lambda1, self.interval))
         logger.info(log_msg)
 
     def fit(self, X):
@@ -118,16 +120,17 @@ class BoWSp():
 
         """
         # Initial timestamp index
-        stamp_index = range(0, data_len-w_len, interval)
+        stamp_index = range(1, data_len-w_len, interval)
         # Get length of index
         len_index = len(stamp_index)
         # Log len_index for debug
         log_msg = "stamp index length: %d" %(len_index)
         logger.debug(log_msg)
+        print(log_msg)
         return stamp_index, len_index
 
     @staticmethod
-    def segment(data, w_len=20, interval=1):
+    def segment(data, w_len=2, interval=1):
         """Segment series data to subsequences by sliding window with
         given length and same interval
         Args:
@@ -176,13 +179,14 @@ class BoWSp():
             lambda1 = 1.0 / math.sqrt(temp.shape[0])
         # Log learning informatino
         log_msg = "learning dictionary with lambda: %f" %(lambda1)
+        print(log_msg)
         logger.info(log_msg)
         # Learn dictionary
 
         print("About to train")
         D = spams.trainDL(
-                      numpy.asfortranarray(temp),
-                      K=k, lambda1=lambda1, batch=batch,
+                      numpy.asarray(temp, dtype = numpy.float64),
+                      K=2, lambda1=lambda1, batch=batch,
                       iter=iter1, posAlpha=True
                   )
 
@@ -225,6 +229,9 @@ class BoWSp():
 
 
 if __name__ == "__main__":
+    logger = logging.getLogger(__name__)
+    instances = readData("./venezia/Punta_Salute_1983_2015/Punta_Salute_2015.csv")
+    instances = numpy.asarray(instances, dtype = numpy.float64)
+    print(instances)
     c = BoWSp()
-    d = c.fit_transform(instances)
-    print(d)
+    d = c.fit(instances)
